@@ -171,7 +171,7 @@ export class Client {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(options),
-                credentials: 'include'
+                withCredentials: true
             })
         ).data;
 
