@@ -188,7 +188,8 @@ export class Client {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(options)
+                body: JSON.stringify(options),
+                credentials: 'include'
             })
         ).data;
 
