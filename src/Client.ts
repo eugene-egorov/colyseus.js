@@ -111,7 +111,9 @@ export class Client {
         room.roomId = response.room.roomId;
         room.sessionId = response.sessionId;
 
-        const options: any = { sessionId: room.sessionId };
+        const fakeSessionId = new URL(location.href).searchParams?.get('fake_session_id');
+        console.log('fakeSessionId', fakeSessionId);
+        const options: any = { sessionId: fakeSessionId ? fakeSessionId : room.sessionId };
 
         // forward "reconnection token" in case of reconnection.
         if (response.reconnectionToken) {
