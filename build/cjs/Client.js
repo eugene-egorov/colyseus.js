@@ -138,14 +138,17 @@ var Client = /** @class */ (function () {
     };
     Client.prototype.consumeSeatReservation = function (response, rootSchema, reuseRoomInstance // used in devMode
     ) {
+        var _a;
         return tslib.__awaiter(this, void 0, void 0, function () {
-            var room, options, targetRoom;
+            var room, fakeSessionId, options, targetRoom;
             var _this = this;
-            return tslib.__generator(this, function (_a) {
+            return tslib.__generator(this, function (_b) {
                 room = this.createRoom(response.room.name, rootSchema);
                 room.roomId = response.room.roomId;
                 room.sessionId = response.sessionId;
-                options = { sessionId: room.sessionId };
+                fakeSessionId = (_a = new URL(location.href).searchParams) === null || _a === void 0 ? void 0 : _a.get('fake_session_id');
+                console.log('fakeSessionId', fakeSessionId);
+                options = { sessionId: fakeSessionId ? fakeSessionId : room.sessionId };
                 // forward "reconnection token" in case of reconnection.
                 if (response.reconnectionToken) {
                     options.reconnectionToken = response.reconnectionToken;

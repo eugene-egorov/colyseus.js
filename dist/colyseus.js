@@ -1,4 +1,4 @@
-// colyseus.js@0.15.14 (@colyseus/schema 2.0.18)
+// colyseus.js@0.15.14 (@colyseus/schema 2.0.34)
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define('colyseus.js', ['exports'], factory) :
@@ -1534,6 +1534,13 @@
                     }
                     return true;
                 },
+                has: function (obj, key) {
+                    if (typeof (key) !== "symbol" &&
+                        !isNaN(Number(key))) {
+                        return obj['$items'].has(Number(key));
+                    }
+                    return Reflect.has(obj, key);
+                }
             });
             return value;
         }
@@ -1611,6 +1618,13 @@
                 //
                 // FIXME: this should be O(1)
                 //
+                index = Math.trunc(index) || 0;
+                // Allow negative indexing from the end
+                if (index < 0)
+                    index += this.length;
+                // OOB access is guaranteed to return undefined
+                if (index < 0 || index >= this.length)
+                    return undefined;
                 var key = Array.from(this.$items.keys())[index];
                 return this.$items.get(key);
             };
@@ -1749,11 +1763,18 @@
              */
             ArraySchema.prototype.splice = function (start, deleteCount) {
                 if (deleteCount === void 0) { deleteCount = this.length - start; }
+                var items = [];
+                for (var _i = 2; _i < arguments.length; _i++) {
+                    items[_i - 2] = arguments[_i];
+                }
                 var indexes = Array.from(this.$items.keys());
                 var removedItems = [];
                 for (var i = start; i < start + deleteCount; i++) {
                     removedItems.push(this.$items.get(indexes[i]));
                     this.$deleteAt(indexes[i]);
+                }
+                for (var i = 0; i < items.length; i++) {
+                    this.setAt(start + i, items[i]);
                 }
                 return removedItems;
             };
@@ -1945,6 +1966,9 @@
             ArraySchema.prototype.includes = function (searchElement, fromIndex) {
                 return Array.from(this.$items.values()).includes(searchElement, fromIndex);
             };
+            //
+            // ES2022
+            //
             /**
              * Calls a defined callback function on each element of an array. Then, flattens the result into
              * a new array.
@@ -1980,9 +2004,26 @@
                 // @ts-ignore
                 return arr.findLastIndex.apply(arr, arguments);
             };
-            // get size () {
-            //     return this.$items.size;
-            // }
+            //
+            // ES2023
+            //
+            ArraySchema.prototype.with = function (index, value) {
+                var copy = Array.from(this.$items.values());
+                copy[index] = value;
+                return new (ArraySchema.bind.apply(ArraySchema, __spreadArray([void 0], copy, false)))();
+            };
+            ArraySchema.prototype.toReversed = function () {
+                return Array.from(this.$items.values()).reverse();
+            };
+            ArraySchema.prototype.toSorted = function (compareFn) {
+                return Array.from(this.$items.values()).sort(compareFn);
+            };
+            // @ts-ignore
+            ArraySchema.prototype.toSpliced = function (start, deleteCount) {
+                var copy = Array.from(this.$items.values());
+                // @ts-ignore
+                return copy.toSpliced.apply(copy, arguments);
+            };
             ArraySchema.prototype.setIndex = function (index, key) {
                 this.$indexes.set(index, key);
             };
@@ -2153,7 +2194,7 @@
                 //
                 // // const index = this.$changes.indexes[key];
                 // // this.$indexes.delete(index);
-                this.$changes.delete(key);
+                this.$changes.delete(key.toString());
                 return this.$items.delete(key);
             };
             MapSchema.prototype.clear = function (changes) {
@@ -2789,22 +2830,22 @@
 
         var encode = /*#__PURE__*/Object.freeze({
             __proto__: null,
-            utf8Write: utf8Write,
-            int8: int8$1,
-            uint8: uint8$1,
-            int16: int16$1,
-            uint16: uint16$1,
-            int32: int32$1,
-            uint32: uint32$1,
-            int64: int64$1,
-            uint64: uint64$1,
+            boolean: boolean$1,
             float32: float32$1,
             float64: float64$1,
-            writeFloat32: writeFloat32,
-            writeFloat64: writeFloat64,
-            boolean: boolean$1,
+            int16: int16$1,
+            int32: int32$1,
+            int64: int64$1,
+            int8: int8$1,
+            number: number$1,
             string: string$1,
-            number: number$1
+            uint16: uint16$1,
+            uint32: uint32$1,
+            uint64: uint64$1,
+            uint8: uint8$1,
+            utf8Write: utf8Write,
+            writeFloat32: writeFloat32,
+            writeFloat64: writeFloat64
         });
 
         /**
@@ -3039,25 +3080,25 @@
 
         var decode = /*#__PURE__*/Object.freeze({
             __proto__: null,
-            int8: int8,
-            uint8: uint8,
-            int16: int16,
-            uint16: uint16,
-            int32: int32,
-            uint32: uint32,
+            arrayCheck: arrayCheck,
+            boolean: boolean,
             float32: float32,
             float64: float64,
+            int16: int16,
+            int32: int32,
             int64: int64,
-            uint64: uint64,
-            readFloat32: readFloat32,
-            readFloat64: readFloat64,
-            boolean: boolean,
-            string: string,
-            stringCheck: stringCheck,
+            int8: int8,
             number: number,
             numberCheck: numberCheck,
-            arrayCheck: arrayCheck,
-            switchStructureCheck: switchStructureCheck
+            readFloat32: readFloat32,
+            readFloat64: readFloat64,
+            string: string,
+            stringCheck: stringCheck,
+            switchStructureCheck: switchStructureCheck,
+            uint16: uint16,
+            uint32: uint32,
+            uint64: uint64,
+            uint8: uint8
         });
 
         var CollectionSchema = /** @class */ (function () {
@@ -3420,7 +3461,16 @@
             };
             // for decoding
             ReferenceTracker.prototype.removeRef = function (refId) {
-                this.refCounts[refId] = this.refCounts[refId] - 1;
+                var refCount = this.refCounts[refId];
+                if (refCount === undefined) {
+                    console.warn("trying to remove reference ".concat(refId, " that doesn't exist"));
+                    return;
+                }
+                if (refCount === 0) {
+                    console.warn("trying to remove reference ".concat(refId, " with 0 refCount"));
+                    return;
+                }
+                this.refCounts[refId] = refCount - 1;
                 this.deletedRefs.add(refId);
             };
             ReferenceTracker.prototype.clearRefs = function () {
@@ -4345,6 +4395,7 @@
                 return _this;
             }
             Reflection.encode = function (instance) {
+                var _a;
                 var rootSchemaType = instance.constructor;
                 var reflection = new Reflection();
                 reflection.rootType = rootSchemaType._typeid;
@@ -4384,7 +4435,7 @@
                     }
                     reflection.types.push(currentType);
                 };
-                var types = rootSchemaType._context.types;
+                var types = (_a = rootSchemaType._context) === null || _a === void 0 ? void 0 : _a.types;
                 for (var typeid in types) {
                     var type_2 = new ReflectionType();
                     type_2.id = Number(typeid);
@@ -4484,8 +4535,6 @@
         exports.hasFilter = hasFilter;
         exports.registerType = registerType;
         exports.type = type;
-
-        Object.defineProperty(exports, '__esModule', { value: true });
 
     }));
     });
@@ -4849,14 +4898,17 @@
         };
         Client.prototype.consumeSeatReservation = function (response, rootSchema, reuseRoomInstance // used in devMode
         ) {
+            var _a;
             return __awaiter(this, void 0, void 0, function () {
-                var room, options, targetRoom;
+                var room, fakeSessionId, options, targetRoom;
                 var _this = this;
-                return __generator(this, function (_a) {
+                return __generator(this, function (_b) {
                     room = this.createRoom(response.room.name, rootSchema);
                     room.roomId = response.room.roomId;
                     room.sessionId = response.sessionId;
-                    options = { sessionId: room.sessionId };
+                    fakeSessionId = (_a = new URL(location.href).searchParams) === null || _a === void 0 ? void 0 : _a.get('fake_session_id');
+                    console.log('fakeSessionId', fakeSessionId);
+                    options = { sessionId: fakeSessionId ? fakeSessionId : room.sessionId };
                     // forward "reconnection token" in case of reconnection.
                     if (response.reconnectionToken) {
                         options.reconnectionToken = response.reconnectionToken;

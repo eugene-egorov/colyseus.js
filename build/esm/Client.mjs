@@ -84,7 +84,9 @@ class Client {
         const room = this.createRoom(response.room.name, rootSchema);
         room.roomId = response.room.roomId;
         room.sessionId = response.sessionId;
-        const options = { sessionId: room.sessionId };
+        const fakeSessionId = new URL(location.href).searchParams?.get('fake_session_id');
+        console.log('fakeSessionId', fakeSessionId);
+        const options = { sessionId: fakeSessionId ? fakeSessionId : room.sessionId };
         // forward "reconnection token" in case of reconnection.
         if (response.reconnectionToken) {
             options.reconnectionToken = response.reconnectionToken;
