@@ -1,4 +1,4 @@
-// colyseus.js@0.15.14
+// colyseus.js@0.15.24
 //
 // Polyfills for legacy environments
 //

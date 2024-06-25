@@ -1,4 +1,4 @@
-// colyseus.js@0.15.14
+// colyseus.js@0.15.24
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });

@@ -1,12 +1,13 @@
-// colyseus.js@0.15.14
+// colyseus.js@0.15.24
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib = require('tslib');
-var http = require('httpie');
 var ServerError = require('./errors/ServerError.js');
 var Room = require('./Room.js');
+var HTTP = require('./HTTP.js');
+var Auth = require('./Auth.js');
 
 var _a;
 var MatchMakeError = /** @class */ (function (_super) {
@@ -31,12 +32,14 @@ var Client = /** @class */ (function () {
             //
             // endpoint by url
             //
-            var url = new URL(settings);
+            var url = (settings.startsWith("/"))
+                ? new URL(settings, DEFAULT_ENDPOINT)
+                : new URL(settings);
             var secure = (url.protocol === "https:" || url.protocol === "wss:");
             var port = Number(url.port || (secure ? 443 : 80));
             this.settings = {
                 hostname: url.hostname,
-                pathname: url.pathname !== "/" ? url.pathname : "",
+                pathname: url.pathname,
                 port: port,
                 secure: secure
             };
@@ -53,6 +56,12 @@ var Client = /** @class */ (function () {
             }
             this.settings = settings;
         }
+        // make sure pathname does not end with "/"
+        if (this.settings.pathname.endsWith("/")) {
+            this.settings.pathname = this.settings.pathname.slice(0, -1);
+        }
+        this.http = new HTTP.HTTP(this);
+        this.auth = new Auth.Auth(this.http);
     }
     Client.prototype.joinOrCreate = function (roomName, options, rootSchema) {
         if (options === void 0) { options = {}; }
@@ -115,6 +124,9 @@ var Client = /** @class */ (function () {
                             throw new Error("DEPRECATED: .reconnect() now only accepts 'reconnectionToken' as argument.\nYou can get this token from previously connected `room.reconnectionToken`");
                         }
                         _a = reconnectionToken.split(":"), roomId = _a[0], token = _a[1];
+                        if (!roomId || !token) {
+                            throw new Error("Invalid reconnection token format.\nThe format should be roomId:reconnectionToken");
+                        }
                         return [4 /*yield*/, this.createMatchMakeRequest('reconnect', roomId, { reconnectionToken: token }, rootSchema)];
                     case 1: return [2 /*return*/, _b.sent()];
                 }
@@ -126,7 +138,7 @@ var Client = /** @class */ (function () {
         return tslib.__awaiter(this, void 0, void 0, function () {
             return tslib.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, http.get(this.getHttpEndpoint("".concat(roomName)), {
+                    case 0: return [4 /*yield*/, this.http.get("matchmake/".concat(roomName), {
                             headers: {
                                 'Accept': 'application/json'
                             }
@@ -206,7 +218,7 @@ var Client = /** @class */ (function () {
             var response;
             return tslib.__generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, http.post(this.getHttpEndpoint("".concat(method, "/").concat(roomName)), {
+                    case 0: return [4 /*yield*/, this.http.post("matchmake/".concat(method, "/").concat(roomName), {
                             headers: {
                                 'Accept': 'application/json',
                                 'Content-Type': 'application/json'
@@ -216,6 +228,7 @@ var Client = /** @class */ (function () {
                         })];
                     case 1:
                         response = (_a.sent()).data;
+                        // FIXME: HTTP class is already handling this as ServerError.
                         if (response.error) {
                             throw new MatchMakeError(response.error, response.code);
                         }
@@ -235,6 +248,7 @@ var Client = /** @class */ (function () {
     Client.prototype.buildEndpoint = function (room, options) {
         if (options === void 0) { options = {}; }
         var params = [];
+        // append provided options
         for (var name_1 in options) {
             if (!options.hasOwnProperty(name_1)) {
                 continue;
@@ -254,7 +268,8 @@ var Client = /** @class */ (function () {
     };
     Client.prototype.getHttpEndpoint = function (segments) {
         if (segments === void 0) { segments = ''; }
-        return "".concat((this.settings.secure) ? "https" : "http", "://").concat(this.settings.hostname).concat(this.getEndpointPort()).concat(this.settings.pathname, "/matchmake/").concat(segments);
+        var path = segments.startsWith("/") ? segments : "/".concat(segments);
+        return "".concat((this.settings.secure) ? "https" : "http", "://").concat(this.settings.hostname).concat(this.getEndpointPort()).concat(this.settings.pathname).concat(path);
     };
     Client.prototype.getEndpointPort = function () {
         return (this.settings.port !== 80 && this.settings.port !== 443)

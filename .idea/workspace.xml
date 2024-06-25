@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2fb27321-2ad8-49c5-a43c-a398a4096b38" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/cjs/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Auth.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Auth.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Client.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Client.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Client.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Connection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Protocol.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Protocol.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Room.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Room.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Room.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Storage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/Storage.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/Storage.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/core/nanoevents.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/core/nanoevents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/core/signal.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/core/signal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/errors/ServerError.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/errors/ServerError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/legacy.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/legacy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/msgpack/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/msgpack/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/serializer/NoneSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/serializer/NoneSerializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/serializer/SchemaSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/serializer/SchemaSerializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/serializer/Serializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/serializer/Serializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/cjs/transport/WebSocketTransport.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/cjs/transport/WebSocketTransport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Auth.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Auth.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Auth.mjs.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Auth.mjs.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Client.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Client.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Client.mjs.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Client.mjs.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Connection.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Connection.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Protocol.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Protocol.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Room.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Room.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Room.mjs.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Room.mjs.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Storage.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Storage.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/Storage.mjs.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/Storage.mjs.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/core/nanoevents.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/core/nanoevents.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/core/signal.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/core/signal.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/errors/ServerError.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/errors/ServerError.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/index.mjs.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/index.mjs.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/legacy.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/legacy.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/msgpack/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/msgpack/index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/serializer/NoneSerializer.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/serializer/NoneSerializer.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/serializer/SchemaSerializer.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/serializer/SchemaSerializer.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/serializer/Serializer.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/serializer/Serializer.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/esm/transport/WebSocketTransport.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/build/esm/transport/WebSocketTransport.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/colyseus-cocos-creator.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/colyseus-cocos-creator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/colyseus-cocos-creator.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/colyseus-cocos-creator.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/colyseus.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/colyseus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/colyseus.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/colyseus.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Auth.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Auth.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Auth.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Auth.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Client.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Client.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Client.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Client.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Client.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Room.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Room.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Room.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Room.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Storage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Storage.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Storage.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/index.js.map" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2iL2s823UQHNQkL6AjsGVAS5oCu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/evgenijegorov/projects/colyseus.js",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/evgenijegorov/projects/colyseus.js/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2fb27321-2ad8-49c5-a43c-a398a4096b38" name="Changes" comment="" />
+      <created>1719255740470</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719255740470</updated>
+      <workItem from="1719255741561" duration="3601000" />
+    </task>
+    <task id="LOCAL-00001" summary="testing">
+      <option name="closed" value="true" />
+      <created>1719256018880</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719256018880</updated>
+    </task>
+    <task id="LOCAL-00002" summary="build">
+      <option name="closed" value="true" />
+      <created>1719256602182</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719256602182</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="testing" />
+    <MESSAGE value="build" />
+    <option name="LAST_COMMIT_MESSAGE" value="build" />
+  </component>
+</project>
